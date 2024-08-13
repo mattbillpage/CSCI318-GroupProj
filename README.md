@@ -12,6 +12,3 @@
 * H2 Database
 * Java 21
 * SprintBoot 3.3.2
-
-
-Git testing x2
