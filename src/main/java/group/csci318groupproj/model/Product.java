@@ -2,12 +2,14 @@ package group.csci318groupproj.model;
 
 import jakarta.persistence.*;
 
+
+//Product class that provides the Schema and Associations for H2 Database
 @Entity
 public class Product {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private int ID;
 
     @Column
     private String name;
@@ -18,10 +20,12 @@ public class Product {
     @Column
     private double price;
 
-    public Product() {}
+    public Product() {} //Empty Constructor
 
-    public Long getId() {
-        return id;
+
+    //Getters and Setters
+    public int getID() {
+        return ID;
     }
 
     public String getName() {
@@ -47,7 +51,5 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-
-
 
 }

@@ -2,12 +2,14 @@ package group.csci318groupproj.model;
 
 import jakarta.persistence.*;
 
+
+//Customer class that provides the Schema and Associations for H2 Database
 @Entity
 public class Customer {
 
     @Id
     @GeneratedValue
-    private long id;
+    private int ID;
 
     @Column
     private String name;
@@ -16,52 +18,49 @@ public class Customer {
     private String address;
 
     @Column
-    private String email;
+    private String emailID;
 
     @Column
     private String password;
 
-    public Customer() {}
+    public Customer() {} //Empty constructor
 
-    public long getId() {
-        return id;
+
+    //Getters and Setters
+    public long getID() {
+        return ID;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getAddress() {
         return address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getEmailID() {
+        return emailID;
+    }
+
+    public void setEmailID(String email) {
+        this.emailID = email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 
 }
