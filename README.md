@@ -11,4 +11,9 @@
 * Spring Data JPA
 * H2 Database
 * Java 21
-* SprintBoot 3.3.2
+* SprintBoot 3.3.3
+
+
+## Endpoints and Ports
+* Customers - localhost:8081/customer*
+* Products - localhost:8082/product*
