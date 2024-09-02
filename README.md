@@ -12,8 +12,10 @@
 * H2 Database
 * Java 21
 * SprintBoot 3.3.3
+* Eureka Server / Client
+* Reactive Gateway
 
 
 ## Endpoints and Ports
-* Customers - localhost:8081/customer*
-* Products - localhost:8082/product*
+* Customers - localhost:8080/customer/*
+* Products - localhost:8080/product/* (NOT YET IMPLEMENTED)
