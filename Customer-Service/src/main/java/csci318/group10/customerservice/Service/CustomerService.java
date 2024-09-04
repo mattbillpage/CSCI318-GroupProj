@@ -26,5 +26,10 @@ public class CustomerService {
         return customerRepository.findById(id).orElse(null);
     }
 
+    public Customer createCustomer(String name, String address, String emailID, String password) {
+        Customer customer = createCustomer(name, address, emailID, password);
+        return customer;
+    }
+
 
 }

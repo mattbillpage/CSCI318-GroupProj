@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
@@ -25,4 +26,12 @@ public class CustomerController {
     Customer getCustomer(@PathVariable int id) {
         return customerService.getCustomerById(id);
     }
+
+    @PostMapping("/")
+    public Customer postMethodName(@RequestBody String name, String address, String emailID, String password) {
+        //TODO: process POST request
+        // String name, String address, String emailID, String password
+        return customerService.createCustomer(name,address,emailID,password);
+    }
+    
 }

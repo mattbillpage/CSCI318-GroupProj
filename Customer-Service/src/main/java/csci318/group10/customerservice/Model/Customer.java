@@ -24,6 +24,12 @@ public class Customer {
 
     public Customer() {} //Empty constructor
 
+    public Customer(String name, String address, String emailID, String password) {
+        this.name = name;
+        this.address = address;
+        this.emailID = emailID;
+        this.password = password;
+    }
 
     //Getters and Setters
     public long getID() {
