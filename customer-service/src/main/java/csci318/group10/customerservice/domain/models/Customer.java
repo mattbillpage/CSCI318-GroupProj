@@ -11,6 +11,9 @@ public class Customer {
     private int ID;
 
     @Column
+    private int cartID;
+
+    @Column
     private String name;
 
     @Column
@@ -61,5 +64,14 @@ public class Customer {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getCartID() {
+        return cartID;
+    }
+
+    public void setCartID(int cartID) {
+        this.cartID = cartID;
+    }
+
 
 }

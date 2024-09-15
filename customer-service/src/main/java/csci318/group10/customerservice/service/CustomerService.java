@@ -26,5 +26,21 @@ public class CustomerService {
         return customerRepository.findById(id).orElse(null);
     }
 
+    public void addCartToUser(int id) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            throw new RuntimeException("Customer not found");
+        }
+
+        String url = "https://localhost:8080/cart" + "/users/" + id;
+        String cartID = restTemplate.postForObject(url, null, String.class);
+        customer.setCartID(Integer.parseInt(cartID));
+        customerRepository.save(customer);
+    }
+
+    public void createNewCustomer(Customer customer) {
+        customerRepository.save(customer);
+    }
+
 
 }

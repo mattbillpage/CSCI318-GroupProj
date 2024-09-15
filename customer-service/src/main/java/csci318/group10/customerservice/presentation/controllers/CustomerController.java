@@ -3,6 +3,7 @@ package csci318.group10.customerservice.presentation.controllers;
 
 import csci318.group10.customerservice.domain.models.Customer;
 import csci318.group10.customerservice.service.CustomerService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +25,16 @@ public class CustomerController {
     @GetMapping("/{id}")
     Customer getCustomer(@PathVariable int id) {
         return customerService.getCustomerById(id);
+    }
+
+    @PostMapping("/{id}/cart")
+    public ResponseEntity<Void> addCartToUser(@PathVariable int id) {
+        customerService.addCartToUser(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/create")
+    void createCustomer(@RequestBody Customer customer) {
+        customerService.createNewCustomer(customer);
     }
 }

@@ -2,8 +2,8 @@ package csci318.group10.cartservice.service;
 
 import csci318.group10.cartservice.domain.models.Cart;
 import csci318.group10.cartservice.infrastructure.repositories.CartRepository;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import java.util.List;
 public class CartService {
 
     private final CartRepository cartRepository;
-    private final RestTemplate restTemplate;
+    private final ApplicationEventPublisher eventPublisher;
 
-    public CartService(CartRepository cartRepository, RestTemplate restTemplate) {
+    public CartService(CartRepository cartRepository, ApplicationEventPublisher eventPublisher) {
         this.cartRepository = cartRepository;
-        this.restTemplate = restTemplate;
+        this.eventPublisher = eventPublisher;
     }
 
     public List<Cart> getAllCarts() {
@@ -24,6 +24,17 @@ public class CartService {
 
     public Cart getCartById(int id) {
         return cartRepository.findById(id).orElse(null);
+    }
+
+    public int createCart(int userID) {
+        Cart existingCart = cartRepository.findById(userID).orElse(null);
+        if (existingCart != null) {
+            return existingCart.getID();
+        }
+        Cart newCart = new Cart(userID);
+        Cart savedCart = cartRepository.save(newCart);
+
+        return savedCart.getID();
     }
 
 
