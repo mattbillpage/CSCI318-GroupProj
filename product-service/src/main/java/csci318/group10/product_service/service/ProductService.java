@@ -25,4 +25,8 @@ public class ProductService {
     public Product getProductById(int id) {
         return productRepository.findById(id).orElse(null);
     }
+
+    public void addProduct(Product product) {
+        productRepository.save(product);
+    }
 }

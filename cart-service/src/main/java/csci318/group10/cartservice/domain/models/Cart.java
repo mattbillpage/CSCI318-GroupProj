@@ -17,7 +17,6 @@ public class Cart {
     @Column
     private int userID;
 
-    @Column
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> items = new ArrayList<>();
 
@@ -51,9 +50,13 @@ public class Cart {
         this.userID = userID;
     }
 
+    public List<CartItem> getItems() {
+        return items;
+    }
 
+    public void setItems(List<CartItem> items) {
+        this.items = items;
+    }
 
-
-    // TODO : Getters and Setters for carts
 
 }

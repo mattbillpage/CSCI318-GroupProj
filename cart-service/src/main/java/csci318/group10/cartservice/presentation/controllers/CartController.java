@@ -1,6 +1,7 @@
 package csci318.group10.cartservice.presentation.controllers;
 
 
+import csci318.group10.cartservice.domain.dto.CartItemDTO;
 import csci318.group10.cartservice.domain.models.Cart;
 import csci318.group10.cartservice.service.CartService;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,15 @@ public class CartController {
     public ResponseEntity<Integer> addCart(@PathVariable int userID) {
         int newCart = cartService.createCart(userID);
         return ResponseEntity.ok(newCart);
+    }
+
+    @GetMapping("/{userID}/items")
+    public List<CartItemDTO> getCartItems(@PathVariable int userID) {
+        return cartService.createCartItemsWithDetails(userID);
+    }
+
+    @PostMapping("/{userID}/{productID}")
+    void addItemToCart(@PathVariable int userID, @PathVariable int productID) {
+        cartService.addItemToCart(userID, productID);
     }
 }
