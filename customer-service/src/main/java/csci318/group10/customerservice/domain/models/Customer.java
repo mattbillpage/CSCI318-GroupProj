@@ -16,8 +16,8 @@ public class Customer {
     @Column
     private String name;
 
-    @Column
-    private String address;
+    @Embedded
+    private Address address;
 
     @Column
     private String emailID;
@@ -41,11 +41,11 @@ public class Customer {
         this.name = name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

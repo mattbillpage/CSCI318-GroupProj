@@ -1,6 +1,8 @@
 package csci318.group10.customerservice.service;
 
+import csci318.group10.customerservice.domain.models.Address;
 import csci318.group10.customerservice.infrastructure.repositories.CustomerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import csci318.group10.customerservice.domain.models.Customer;
@@ -22,9 +24,11 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer getCustomerById(int id) {
+    public Customer getCustomerWithAddress(int id) {
         return customerRepository.findById(id).orElse(null);
     }
+
+
 
     public void addCartToUser(int id) {
         Customer customer = customerRepository.findById(id).orElse(null);
@@ -43,4 +47,12 @@ public class CustomerService {
     }
 
 
+    public void updateCustomerAddress(int id, Address address) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if (customer == null) {
+            throw new RuntimeException("Customer not found");
+        }
+        customer.setAddress(address);
+        customerRepository.save(customer);
+    }
 }

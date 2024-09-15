@@ -39,6 +39,11 @@ public class CartController {
         return cartService.createCartItemsWithDetails(userID);
     }
 
+    @GetMapping("/{userID}/cartTotal")
+    public double getCartTotal(@PathVariable int userID) {
+        return cartService.getCartTotal(userID);
+    }
+
     @PostMapping("/{userID}/{productID}")
     void addItemToCart(@PathVariable int userID, @PathVariable int productID) {
         cartService.addItemToCart(userID, productID);
