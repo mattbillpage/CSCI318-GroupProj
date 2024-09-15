@@ -32,7 +32,7 @@ public class CustomerService {
             throw new RuntimeException("Customer not found");
         }
 
-        String url = "https://localhost:8080/cart" + "/users/" + id;
+        String url = "http://localhost:8080/cart/users/" + id;
         String cartID = restTemplate.postForObject(url, null, String.class);
         customer.setCartID(Integer.parseInt(cartID));
         customerRepository.save(customer);

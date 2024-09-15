@@ -28,7 +28,7 @@ public class CartController {
     }
 
     @PostMapping("/users/{userID}")
-    public ResponseEntity<Integer> addCart(@PathVariable int userID, @RequestBody Cart cart) {
+    public ResponseEntity<Integer> addCart(@PathVariable int userID) {
         int newCart = cartService.createCart(userID);
         return ResponseEntity.ok(newCart);
     }
