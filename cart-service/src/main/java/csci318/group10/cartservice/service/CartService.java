@@ -8,16 +8,12 @@ import csci318.group10.cartservice.infrastructure.repositories.CartRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class CartService {
-
     private final CartRepository cartRepository;
     private final ApplicationEventPublisher eventPublisher;
     private final RestTemplate restTemplate;
@@ -95,6 +91,8 @@ public class CartService {
             }
         }
         cartRepository.save(existingCart);
+
+        restTemplate.put("http://localhost:8080/product/" + productID + "/reduceQuantity/" + "1", null);
     }
 
     public double getCartTotal(int userID) {

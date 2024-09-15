@@ -20,7 +20,7 @@ public class Product {
     private double price;
 
     @Column
-    private int quantity;
+    private int stockQuantity;
 
     public Product() {} //Empty constructor
 
@@ -37,8 +37,8 @@ public class Product {
     public double getPrice() {
         return price;
     }
-    public int getQuantity() {
-        return quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
     public void setName(String name) {
         this.name = name;
@@ -49,8 +49,8 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStockQuantity(int quantity) {
+        this.stockQuantity = quantity;
     }
 
 }

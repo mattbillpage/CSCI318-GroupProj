@@ -30,4 +30,14 @@ public class ProductController {
     void createProduct(@RequestBody Product product) {
         productService.addProduct(product);
     }
+
+    @PutMapping("/{id}/discount/{discount}")
+    void updateProductDiscount(@PathVariable int id, @PathVariable double discount) {
+        productService.updateProductDiscount(id, discount);
+    }
+
+    @PutMapping("/{id}/reduceQuantity/{quantity}")
+    void reduceProductQuantity(@PathVariable int id, @PathVariable int quantity) {
+        productService.reduceProductQuantity(id, quantity);
+    }
 }
