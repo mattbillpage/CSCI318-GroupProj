@@ -15,6 +15,13 @@
 * Eureka Server / Client
 * Reactive Gateway
 
+## Setup and Run
+1. Clone the repository
+2. Launch Kafka server
+3. Launch Eureka Server and API Gateway
+4. Launch the microservices
+5. Navigate to the Eureka Server to verify the microservices are running
+6. Communicate with the API Gateway to access the microservices
 
 ## Endpoints and Ports
 ### For api access
