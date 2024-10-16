@@ -46,7 +46,10 @@ public class CartItem {
     }
 
 
-
+    @Override
+    public String toString() {
+        return String.valueOf(productId) + " " + String.valueOf(quantity);
+    }
 
 
 
