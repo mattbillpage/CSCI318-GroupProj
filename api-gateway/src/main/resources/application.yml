@@ -18,6 +18,10 @@ spring:
           uri: lb://analytics-service
           predicates:
             - Path=/analytics/**
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/orders/**
 
 
 eureka:
