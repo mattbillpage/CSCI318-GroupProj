@@ -18,7 +18,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Order>> getAllOrders() {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
@@ -30,7 +30,7 @@ public class OrderController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
         Order createdOrder = orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdOrder);
