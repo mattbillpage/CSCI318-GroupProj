@@ -35,5 +35,6 @@
 * Customers - localhost:8081/customer/*
 * Products - localhost:8082/product/*
 * Carts - localhost:8083/cart/*
+* Orders localhost:8085/orders/*
 * API Gateway - localhost:8080/* (API gateway to allow access and management of all endpoints from single location)
 * Eureka Server - localhost:8761 (Discovery server for microservice communication)
