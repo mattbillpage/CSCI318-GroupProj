@@ -6,10 +6,12 @@ import csci318.group10.cartservice.domain.models.Cart;
 import csci318.group10.cartservice.domain.models.CartItem;
 import csci318.group10.cartservice.infrastructure.repositories.CartRepository;
 import csci318.group10.cartservice.shareddomain.events.CartEvent;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.event.TransactionalEventListener;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,13 +22,15 @@ public class CartService {
     private final ApplicationEventPublisher eventPublisher;
     private final RestTemplate restTemplate;
     private final KafkaTemplate<String, CartEvent> kafkaTemplate;
-    private static final String TOPIC = "cart-events";
 
-    public CartService(CartRepository cartRepository, ApplicationEventPublisher eventPublisher, RestTemplate restTemplate, KafkaTemplate<String, CartEvent> kafkaTemplate) {
+    private final StreamBridge streamBridge;
+
+    public CartService(CartRepository cartRepository, ApplicationEventPublisher eventPublisher, RestTemplate restTemplate, KafkaTemplate<String, CartEvent> kafkaTemplate, StreamBridge streamBridge) {
         this.cartRepository = cartRepository;
         this.eventPublisher = eventPublisher;
         this.restTemplate = restTemplate;
         this.kafkaTemplate = kafkaTemplate;
+        this.streamBridge = streamBridge;
     }
 
     public List<Cart> getAllCarts() {
@@ -100,7 +104,7 @@ public class CartService {
         restTemplate.put("http://localhost:8080/product/" + productID + "/reduceQuantity/" + "1", null);
 
         //Publish event when cart is updated
-        updateCart(existingCart.getID(), existingCart.getItems());
+        updateCart(existingCart);
     }
 
     public double getCartTotal(int userID) {
@@ -113,9 +117,9 @@ public class CartService {
         return 0;
     }
 
-    public void updateCart(int cartId, List<CartItem> items) {
-        String cartIdString = String.valueOf(cartId);
-        CartEvent event = new CartEvent(cartId, items);
-        kafkaTemplate.send(TOPIC, cartIdString, event);
+    @TransactionalEventListener
+    public void updateCart(Cart cart) {
+        CartEvent event = new CartEvent(cart.getID(), cart.getItems());
+        streamBridge.send("cartEventsChannel", event);
     }
 }

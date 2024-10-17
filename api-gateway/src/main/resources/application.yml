@@ -14,6 +14,11 @@ spring:
           uri: lb://cart-service
           predicates:
             - Path=/cart/**
+        - id: analytics-service
+          uri: lb://analytics-service
+          predicates:
+            - Path=/analytics/**
+
 
 eureka:
   client:
