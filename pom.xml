@@ -17,6 +17,7 @@
         <module>discovery-server</module>
         <module>product-service</module>
         <module>cart-service</module>
+        <module>analytics-service</module>
     </modules>
 
     <properties>

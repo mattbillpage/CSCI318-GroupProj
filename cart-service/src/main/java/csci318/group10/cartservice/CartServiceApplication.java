@@ -14,10 +14,9 @@ public class CartServiceApplication {
         SpringApplication.run(CartServiceApplication.class, args);
     }
 
-
     @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
+    public RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder) {
+        return restTemplateBuilder.build();
     }
 
 }

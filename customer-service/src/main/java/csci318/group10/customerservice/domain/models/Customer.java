@@ -11,10 +11,13 @@ public class Customer {
     private int ID;
 
     @Column
-    private String name;
+    private int cartID;
 
     @Column
-    private String address;
+    private String name;
+
+    @Embedded
+    private Address address;
 
     @Column
     private String emailID;
@@ -38,11 +41,11 @@ public class Customer {
         this.name = name;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -61,5 +64,14 @@ public class Customer {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public int getCartID() {
+        return cartID;
+    }
+
+    public void setCartID(int cartID) {
+        this.cartID = cartID;
+    }
+
 
 }

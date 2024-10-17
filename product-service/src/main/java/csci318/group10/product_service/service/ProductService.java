@@ -25,4 +25,24 @@ public class ProductService {
     public Product getProductById(int id) {
         return productRepository.findById(id).orElse(null);
     }
+
+    public void addProduct(Product product) {
+        productRepository.save(product);
+    }
+
+    public void updateProductDiscount(int id, double discount) {
+        Product product = productRepository.findById(id).orElse(null);
+        if (product != null) {
+            product.setPrice(product.getPrice() * discount);
+            productRepository.save(product);
+        }
+    }
+
+    public void reduceProductQuantity(int id, int quantity) {
+        Product product = productRepository.findById(id).orElse(null);
+        if (product != null) {
+            product.setStockQuantity(product.getStockQuantity() - quantity);
+            productRepository.save(product);
+        }
+    }
 }
