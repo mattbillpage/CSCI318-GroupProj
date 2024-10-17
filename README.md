@@ -15,7 +15,6 @@
 * Eureka Server / Client
 * Reactive Gateway
 * Apache Kafka
-* 
 
 ## Setup and Run
 1. Clone the repository
@@ -31,10 +30,13 @@
 * Customers - localhost:8080/customer/*
 * Products - localhost:8080/product/*
 * Carts - localhost:8080/cart/*
+* Orders - localhost:8080/order/*
+* Analytics - localhost:8080/analytics/*
 ### Actual port locations and development tools
 * Customers - localhost:8081/customer/*
 * Products - localhost:8082/product/*
 * Carts - localhost:8083/cart/*
+* Analytics - localhost:8084/analytics/*
 * Orders localhost:8085/orders/*
 * API Gateway - localhost:8080/* (API gateway to allow access and management of all endpoints from single location)
 * Eureka Server - localhost:8761 (Discovery server for microservice communication)
