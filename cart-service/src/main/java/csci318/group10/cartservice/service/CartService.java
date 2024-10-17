@@ -21,15 +21,13 @@ public class CartService {
     private final CartRepository cartRepository;
     private final ApplicationEventPublisher eventPublisher;
     private final RestTemplate restTemplate;
-    private final KafkaTemplate<String, CartEvent> kafkaTemplate;
 
     private final StreamBridge streamBridge;
 
-    public CartService(CartRepository cartRepository, ApplicationEventPublisher eventPublisher, RestTemplate restTemplate, KafkaTemplate<String, CartEvent> kafkaTemplate, StreamBridge streamBridge) {
+    public CartService(CartRepository cartRepository, ApplicationEventPublisher eventPublisher, RestTemplate restTemplate, StreamBridge streamBridge) {
         this.cartRepository = cartRepository;
         this.eventPublisher = eventPublisher;
         this.restTemplate = restTemplate;
-        this.kafkaTemplate = kafkaTemplate;
         this.streamBridge = streamBridge;
     }
 
