@@ -2,7 +2,10 @@ package csci318.group10.product_service.service;
 
 import csci318.group10.product_service.domain.models.Product;
 import csci318.group10.product_service.infrastructure.repositories.ProductRepository;
+import csci318.group10.product_service.shareddomain.events.ProductEvent;
+import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.event.TransactionalEventListener;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -12,10 +15,12 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final RestTemplate restTemplate;
+    private final StreamBridge streamBridge;
 
-    public ProductService(ProductRepository productRepository, RestTemplate restTemplate) {
+    public ProductService(ProductRepository productRepository, RestTemplate restTemplate, StreamBridge streamBridge) {
         this.productRepository = productRepository;
         this.restTemplate = restTemplate;
+        this.streamBridge = streamBridge;
     }
 
     public List<Product> getAllProducts() {
@@ -43,6 +48,13 @@ public class ProductService {
         if (product != null) {
             product.setStockQuantity(product.getStockQuantity() - quantity);
             productRepository.save(product);
+            updateProduct(product);
         }
+    }
+
+    @TransactionalEventListener
+    public void updateProduct(Product product) {
+        ProductEvent event = new ProductEvent(product.getID(), product.getStockQuantity());
+        streamBridge.send("productEventsChannel", event);
     }
 }
