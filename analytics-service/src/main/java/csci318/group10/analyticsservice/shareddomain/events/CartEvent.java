@@ -6,11 +6,11 @@ import java.util.List;
 
 public class CartEvent {
     private int cartId;
-    private List<String> items;
+    private List<CartItem> items;
 
     @JsonCreator
     public CartEvent(@JsonProperty("cartId") int cartId,
-                     @JsonProperty("items") List<String> items) {
+                     @JsonProperty("items") List<CartItem> items) {
         this.cartId = cartId;
         this.items = items;
     }
@@ -22,7 +22,7 @@ public class CartEvent {
     }
 
     @JsonProperty("items")
-    public List<String> getItems() {
+    public List<CartItem> getItems() {
         return items;
     }
 
@@ -31,7 +31,7 @@ public class CartEvent {
         this.cartId = cartId;
     }
 
-    public void setItems(List<String> items) {
+    public void setItems(List<CartItem> items) {
         this.items = items;
     }
 
